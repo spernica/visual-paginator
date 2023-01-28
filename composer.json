@@ -33,17 +33,17 @@
   },
   "require": {
     "php": "^7.2 | ^8.0",
-    "nette/application": "*",
-    "nette/di": "*",
-    "nette/utils": "*",
-    "latte/latte": "*"
+    "nette/application": "^3.0",
+    "nette/di": "^4.0",
+    "nette/utils": "^3.0",
+    "latte/latte": "^2.5"
   },
   "require-dev": {
-    "nette/bootstrap": "*",
-    "nette/forms": "*",
-    "nette/tester": "*",
-    "tracy/tracy": "*",
-    "janmarek/mockista": "*"
+    "nette/bootstrap": "^3.0",
+    "nette/forms": "^3.0",
+    "nette/tester": "^2.2",
+    "tracy/tracy": "^2.6",
+    "janmarek/mockista": "^1.1"
   },
   "autoload": {
     "psr-0": {
