@@ -20,5 +20,5 @@ interface IControl
 	 * @param string|NULL $templateFile
 	 * @return mixed
 	 */
-	public function create($templateFile = NULL, $displayRelatedPages = 3);
+	public function create($templateFile = NULL, $displayRelatedPages = 3): mixed;
 }
