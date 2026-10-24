@@ -31,13 +31,14 @@ use IPub\VisualPaginator\Exceptions;
  *
  * @method onShowPage(Control $self, $page)
  *
- * @property Application\UI\ITemplate $template
+ * @property Application\UI\Template $template
  */
 class Control extends Application\UI\Control
 {
 	/**
-	 * @persistent int
+	 * @var int
 	 */
+	#[Nette\Application\Attributes\Persistent]
 	public $page = 1;
 
 	/**
@@ -63,7 +64,7 @@ class Control extends Application\UI\Control
         protected $displayRelatedPages;
 
 	/**
-	 * @var Localization\ITranslator
+	 * @var Localization\Translator
 	 */
 	protected $translator;
 
@@ -73,9 +74,9 @@ class Control extends Application\UI\Control
 	protected $useAjax = TRUE;
 
 	/**
-	 * @param Localization\ITranslator $translator
+	 * @param Localization\Translator $translator
 	 */
-	public function injectTranslator(Localization\ITranslator $translator = NULL)
+	public function injectTranslator(?Localization\Translator $translator = NULL)
 	{
 		$this->translator = $translator;
 	}
@@ -88,7 +89,7 @@ class Control extends Application\UI\Control
 	public function __construct(
 		$templateFile = NULL,
                 $displayRelatedPages = NULL,
-		Nette\ComponentModel\IContainer $parent = NULL, $name = NULL
+		?Nette\ComponentModel\IContainer $parent = NULL, $name = NULL
 	) {
 		if ($templateFile) {
 			$this->setTemplateFile($templateFile);
@@ -110,7 +111,7 @@ class Control extends Application\UI\Control
 			$this->template->useAjax	= $this->useAjax;
 
 			// Check if translator is available
-			if ($this->getTranslator() instanceof Localization\ITranslator) {
+			if ($this->getTranslator() instanceof Localization\Translator) {
 				$this->template->setTranslator($this->getTranslator());
 			}
 
@@ -191,11 +192,11 @@ class Control extends Application\UI\Control
 	}
 
 	/**
-	 * @param Localization\ITranslator $translator
+	 * @param Localization\Translator $translator
 	 *
 	 * @return $this
 	 */
-	public function setTranslator(Localization\ITranslator $translator)
+	public function setTranslator(Localization\Translator $translator)
 	{
 		$this->translator = $translator;
 
@@ -203,11 +204,11 @@ class Control extends Application\UI\Control
 	}
 
 	/**
-	 * @return Localization\ITranslator|null
+	 * @return Localization\Translator|null
 	 */
 	public function getTranslator()
 	{
-		if ($this->translator instanceof Localization\ITranslator) {
+		if ($this->translator instanceof Localization\Translator) {
 			return $this->translator;
 		}
 

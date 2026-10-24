@@ -28,7 +28,7 @@ class VisualPaginatorExtension extends DI\CompilerExtension
 
 	public function loadConfiguration()
 	{
-		$config = DI\Config\Helpers::merge($this->getConfig(), $this->defaults);
+		$config = Nette\Schema\Helpers::merge($this->getConfig(), $this->defaults);
 		$builder = $this->getContainerBuilder();
 
 		// Define components
@@ -37,8 +37,8 @@ class VisualPaginatorExtension extends DI\CompilerExtension
 			->addTag('cms.components')
 			->getResultDefinition()
 			->setType('IPub\VisualPaginator\Components\Control')
-			->setArguments([new Nette\PhpGenerator\PhpLiteral('$templateFile')])
-			->addTag(DI\Extensions\InjectExtension::TAG_INJECT);
+			->setArguments([new Nette\PhpGenerator\Literal('$templateFile')])
+			->addTag(DI\Extensions\InjectExtension::TagInject);
 
 		if ($config['templateFile']) {
 			$paginator->addSetup('$service->setTemplateFile(?)', [$config['templateFile']]);
@@ -46,12 +46,12 @@ class VisualPaginatorExtension extends DI\CompilerExtension
 	}
 
 	/**
-	 * @param Nette\Configurator $config
+	 * @param Nette\Bootstrap\Configurator $config
 	 * @param string $extensionName
 	 */
-	public static function register(Nette\Configurator $config, $extensionName = 'visualPaginator')
+	public static function register(Nette\Bootstrap\Configurator $config, $extensionName = 'visualPaginator')
 	{
-		$config->onCompile[] = function (Nette\Configurator $config, Nette\DI\Compiler $compiler) use ($extensionName) {
+		$config->onCompile[] = function (Nette\Bootstrap\Configurator $config, Nette\DI\Compiler $compiler) use ($extensionName) {
 			$compiler->addExtension($extensionName, new VisualPaginatorExtension());
 		};
 	}
